@@ -10,38 +10,37 @@ echo "timestamp chenglingji_outflow chenglingji_inflow chenglingji_risedrop chen
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="三峡水库"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/three-gorges.csv &
+    sort | uniq >> csv/three-gorges.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="寸滩"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/cuntan.csv &
+    sort | uniq >> csv/cuntan.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="汉口"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
     sort | uniq | \
-    egrep -v "^1595113260 0 2330 6 42.57$" >> csv/hankou.csv &
+    egrep -v "^1595113260 0 2330 6 42.57$" >> csv/hankou.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="汉口"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/hankou-prev.csv &
+    sort | uniq >> csv/hankou-prev.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="宜昌"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/yichang.csv &
+    sort | uniq >> csv/yichang.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="武隆"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/wulong.csv &
+    sort | uniq >> csv/wulong.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="沙市"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/shashi.csv &
+    sort | uniq >> csv/shashi.csv 
 
 find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
     jq -r '(map(select(.stnm=="城陵矶(七)"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/chenglingji.csv &
+    sort | uniq >> csv/chenglingji.csv 
 
-wait
 
 join csv/cuntan.csv csv/wulong.csv > csv/cuntan-wulong.csv
 join csv/shashi.csv csv/chenglingji.csv > csv/shashi-chenglingji.csv

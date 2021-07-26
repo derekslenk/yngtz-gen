@@ -2,6 +2,8 @@
 
 while true; do
 
+date
+
 FN=$(TZ=America/New_York date +%Y-%m-%d-%H%M%S-%s)
 
 curl 'http://www.cjh.com.cn/sqindex.html' \
@@ -16,6 +18,10 @@ curl 'http://www.cjh.com.cn/sqindex.html' \
   -o out/$FN.html
 
 touch updated
+
+date
+
+echo "###########################################"
 
 sleep 300
 
