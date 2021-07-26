@@ -1,49 +1,48 @@
 #!/bin/bash
-echo "timestamp outflow inflow risedrop level" > csv/three-gorges.csv
-echo "timestamp outflow inflow risedrop level" > csv/cuntan.csv
-echo "timestamp outflow inflow risedrop level" > csv/hankou.csv
-echo "timestamp outflow inflow risedrop level" > csv/hankou-prev.csv
-echo "timestamp outflow inflow risedrop level" > csv/yichang.csv
-echo "timestamp wulong_outflow wulong_inflow wulong_risedrop wulong_level" > csv/wulong.csv
-echo "timestamp shashi_outflow shashi_inflow shashi_risedrop shashi_level" > csv/shashi.csv
-echo "timestamp chenglingji_outflow chenglingji_inflow chenglingji_risedrop chenglingji_level" > csv/chenglingji.csv
+echo "timestamp outflow inflow risedrop level" >csv/three-gorges.csv
+echo "timestamp outflow inflow risedrop level" >csv/cuntan.csv
+echo "timestamp outflow inflow risedrop level" >csv/hankou.csv
+echo "timestamp outflow inflow risedrop level" >csv/hankou-prev.csv
+echo "timestamp outflow inflow risedrop level" >csv/yichang.csv
+echo "timestamp wulong_outflow wulong_inflow wulong_risedrop wulong_level" >csv/wulong.csv
+echo "timestamp shashi_outflow shashi_inflow shashi_risedrop shashi_level" >csv/shashi.csv
+echo "timestamp chenglingji_outflow chenglingji_inflow chenglingji_risedrop chenglingji_level" >csv/chenglingji.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="三峡水库"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/three-gorges.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="三峡水库"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/three-gorges.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="寸滩"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/cuntan.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="寸滩"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/cuntan.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="汉口"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq | \
-    egrep -v "^1595113260 0 2330 6 42.57$" >> csv/hankou.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="汉口"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq |
+    egrep -v "^1595113260 0 2330 6 42.57$" >>csv/hankou.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="汉口"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/hankou-prev.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="汉口"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/hankou-prev.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="宜昌"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/yichang.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="宜昌"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/yichang.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="武隆"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/wulong.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="武隆"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/wulong.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="沙市"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/shashi.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="沙市"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/shashi.csv
 
-find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 | \
-    jq -r '(map(select(.stnm=="城陵矶(七)"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' | \
-    sort | uniq >> csv/chenglingji.csv 
+find out/ -name '*.html' | xargs cat | grep "var sssq =" | cut -d "=" -f 2 | cut -d ";" -f 1 |
+    jq -r '(map(select(.stnm=="城陵矶(七)"))[]) | "\(.tm/1000) \(.oq) \(.q) \(.wptn) \(.z)"' |
+    sort | uniq >>csv/chenglingji.csv
 
-
-join csv/cuntan.csv csv/wulong.csv > csv/cuntan-wulong.csv
-join csv/shashi.csv csv/chenglingji.csv > csv/shashi-chenglingji.csv
+join csv/cuntan.csv csv/wulong.csv >csv/cuntan-wulong.csv
+join csv/shashi.csv csv/chenglingji.csv >csv/shashi-chenglingji.csv
 
 ./three-gorges.gnuplot
 ./cuntan.gnuplot
