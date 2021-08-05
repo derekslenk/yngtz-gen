@@ -1,0 +1,9 @@
+CURRENT WATER LEVELS
+Chongqing:        165.36 m ↓
+Three Gorges Dam: 145.82 m ↑
+Yichang:          44.41 m ↑
+Hankou/Wuhan:     22.21 m ‒
+
+CURRENT FLOW RATES
+Outflow:          17200 m³/s ‒
+Inflow:           15500 m³/s ‒
