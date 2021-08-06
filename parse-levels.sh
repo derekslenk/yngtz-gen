@@ -3,11 +3,11 @@
 DATE=$(date)
 
 # Previous inflow value
-CURINFLOW=$(tail -n 1 levels.txt | awk '{ print $2 }')
+CURINFLOW=$(tail -n 1 flows.txt | awk '{ print $2 }')
 PREVINFLOW=$(cat csv/three-gorges.csv | cut -d ' ' -f3 | grep -v "^0$" | tail -n 2 | head -n 1)
 
 #Previous outflow value
-OUTFLOW=$(tail -n 2 levels.txt | head -n 1 | awk '{ print $2}')
+OUTFLOW=$(tail -n 2 flows.txt | head -n 1 | awk '{ print $2}')
 
 PREVTGD=$(tail -n 2 csv/three-gorges.csv | awk '{print $5}' | head -n 1)
 TGD=$(tail -n 1 csv/three-gorges.csv | awk '{print $5}')
