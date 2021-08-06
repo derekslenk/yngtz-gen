@@ -30,60 +30,62 @@ fi
 
 #Thanks https://stackoverflow.com/questions/11237794/how-to-compare-two-decimal-numbers-in-bash-awk
 
-printf "CURRENT WATER LEVELS\n" >levels.txt
+printf "CURRENT WATER LEVELS\n" > levels_1.txt
 
 if echo $CUNTAN $PREVCUNTAN | awk '{exit !( $1 > $2)}'; then
-    printf "Chongqing:        %s m ↑\n" $CUNTAN >>levels.txt
+    printf "Chongqing:        %s m ↑\n" $CUNTAN >>levels_1.txt
 elif echo $CUNTAN $PREVCUNTAN | awk '{exit !( $1 < $2)}'; then
-    printf "Chongqing:        %s m ↓\n" $CUNTAN >>levels.txt
+    printf "Chongqing:        %s m ↓\n" $CUNTAN >>levels_1.txt
 else
-    printf "Chongqing:        %s m ‒\n" $CUNTAN >>levels.txt
+    printf "Chongqing:        %s m ‒\n" $CUNTAN >>levels_1.txt
 fi
 
 if echo $TGD $PREVTGD | awk '{exit !( $1 > $2)}'; then
-    printf "Three Gorges Dam: %s m ↑\n" $TGD >>levels.txt
+    printf "Three Gorges Dam: %s m ↑\n" $TGD >>levels_1.txt
 elif echo $TGD $PREVTGD | awk '{exit !( $1 < $2)}'; then
-    printf "Three Gorges Dam: %s m ↓\n" $TGD >>levels.txt
+    printf "Three Gorges Dam: %s m ↓\n" $TGD >>levels_1.txt
 else
-    printf "Three Gorges Dam: %s m ‒\n" $TGD >>levels.txt
+    printf "Three Gorges Dam: %s m ‒\n" $TGD >>levels_1.txt
 fi
 
+printf "\n" > levels_2.txt
+
 if echo $YICHANG $PREVYICHANG | awk '{exit !( $1 > $2)}'; then
-    printf "Yichang:          %s m ↑\n" $YICHANG >>levels.txt
+    printf " Yichang:        %s m ↑\n" $YICHANG >>levels_2.txt
 elif echo $YICHANG $PREVYICHANG | awk '{exit !( $1 < $2)}'; then
-    printf "Yichang:          %s m ↓\n" $YICHANG >>levels.txt
+    printf " Yichang:        %s m ↓\n" $YICHANG >>levels_2.txt
 else
-    printf "Yichang:          %s m ‒\n" $YICHANG >>levels.txt
+    printf " Yichang:        %s m ‒\n" $YICHANG >>levels_2.txt
 fi
 
 if echo $HANKOU $PREVHANKOU | awk '{exit !( $1 > $2)}'; then
-    printf "Hankou/Wuhan:     %s m ↑\n" $HANKOU >>levels.txt
+    printf " Hankou/Wuhan:   %s m ↑\n" $HANKOU >>levels_2.txt
 elif echo $HANKOU $PREVHANKOU | awk '{exit !( $1 < $2)}'; then
-    printf "Hankou/Wuhan:     %s m ↓\n" $HANKOU >>levels.txt
+    printf " Hankou/Wuhan:   %s m ↓\n" $HANKOU >>levels_2.txt
 else
-    printf "Hankou/Wuhan:     %s m ‒\n" $HANKOU >>levels.txt
+    printf " Hankou/Wuhan:   %s m ‒\n" $HANKOU >>levels_2.txt
 fi
 
-printf "\nCURRENT FLOW RATES\n" >>levels.txt
+printf "CURRENT FLOW RATES\n" > flows.txt
 
 printf "Prev outflow is: %s\n" $OUTFLOW
 printf "New outflow is: %s\n" $NEWOUTFLOW
 if (($NEWOUTFLOW > $OUTFLOW)); then
-    printf "Outflow:          %s m³/s ↑\n" $NEWOUTFLOW >>levels.txt
+    printf "Outflow:          %s m³/s ↑\n" $NEWOUTFLOW >>flows.txt
 elif (($NEWOUTFLOW < $OUTFLOW)); then
-    printf "Outflow:          %s m³/s ↓\n" $NEWOUTFLOW >>levels.txt
+    printf "Outflow:          %s m³/s ↓\n" $NEWOUTFLOW >>flows.txt
 else
-    printf "Outflow:          %s m³/s ‒\n" $NEWOUTFLOW >>levels.txt
+    printf "Outflow:          %s m³/s ‒\n" $NEWOUTFLOW >>flows.txt
 fi
 
 printf "Prev inflow is: %s\n" $PREVINFLOW
 printf "New inflow is: %s\n" $NEWINFLOW
 if (($NEWINFLOW > $PREVINFLOW)); then
-    printf "Inflow:           %s m³/s ↑\n" $NEWINFLOW >>levels.txt
+    printf "Inflow:           %s m³/s ↑\n" $NEWINFLOW >>flows.txt
 elif (($NEWINFLOW < $PREVINFLOW)); then
-    printf "Inflow:           %s m³/s ↓\n" $NEWINFLOW >>levels.txt
+    printf "Inflow:           %s m³/s ↓\n" $NEWINFLOW >>flows.txt
 else
-    printf "Inflow:           %s m³/s ‒\n" $NEWINFLOW >>levels.txt
+    printf "Inflow:           %s m³/s ‒\n" $NEWINFLOW >>flows.txt
 fi
 
 # printf "Updated: %s\n" $DATE >> levels.txt
