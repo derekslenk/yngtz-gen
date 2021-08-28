@@ -48,7 +48,7 @@ else
     printf "Three Gorges Dam: %s m ‒\n" $TGD >>levels_1.txt
 fi
 
-printf "\n" > levels_2.txt
+printf     "        (↑↓ = Δ/hr)\n" > levels_2.txt
 
 if echo $YICHANG $PREVYICHANG | awk '{exit !( $1 > $2)}'; then
     printf " Yichang:        %s m ↑\n" $YICHANG >>levels_2.txt
